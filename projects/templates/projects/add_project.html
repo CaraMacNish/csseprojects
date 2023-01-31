@@ -1,0 +1,35 @@
+{% extends 'projects/base.html' %}
+{% load markdown_extras %}
+{% load static %}
+
+{% block content %}
+
+
+<main>
+    {% include "projects/header.html" with title="Add a Project" %}
+
+{% if submitted %}
+    Your project was submitted successfully!
+
+{% else %}
+
+<form action="" method=POST>
+    {% csrf_token %}
+
+    <div class="mb-3">
+        <label for="title" class="form-label">Topic title:</label>
+        <input type="text" class="form-control" id="title" aria-describedby="titleHelp">
+        <div id="emailHelp" class="form-text">type in your title.</div>
+    </div>
+    <div class="mb-3">
+        <label for="description" class="form-label">Description:</label>
+        <input type="textarea" class="form-control" id="desctiption" aria-describedby="descriptionHelp">
+        <div id="descriptionHelp" class="form-text">Please enter the topic full description. The description may include markdown.</div>
+    </div>
+
+    <input type="submit" value="Submit" class="btn btn-secondary">
+
+{% endif %}
+
+
+{% endblock %}

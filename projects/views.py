@@ -1,7 +1,23 @@
 from django.shortcuts import render
+from django.http import HttpResponseRedirect
 from .models import Supervisor, Project
+from .forms import ProjectForm
 
 # Create your views here.
+
+def add_project(request):
+    submitted = False
+    if request.method == "POST":
+        form = ProjectForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('?submitted=True')
+    else:
+        form = ProjectForm
+        if 'submitted' in request.GET:
+            submitted = True
+
+    return render(request, "projects/add_project.html", {'form': form, 'submitted': submitted})
 
 def all_supervisors(request):
     supervisor_list = Supervisor.objects.all()

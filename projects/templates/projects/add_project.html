@@ -6,7 +6,7 @@
 
 
 <main>
-    {% include "projects/header.html" with title="Add a Project" %}
+    {% include "projects/header.html" with title="Add a Project Topic" %}
 
 {% if submitted %}
     Your project was submitted successfully!
@@ -16,18 +16,107 @@
 <form action="" method=POST>
     {% csrf_token %}
 
+ <!--   {{ form.as_p }} -->
+     <div class="mb-3">
+        <label for="primary" class="form-label"><b>Primary supervisor*</b></label>
+        {{ form.primary }}
+        <div id="primaryHelp" class="form-text">Please contact the <a href="mailto:cara.macnish@uwa.edu.au">Projects Coordinator</a> to be added to the list of supervisors.</div>
+    </div>
+    <div class="mb-3">
+        <label for="cosupervisors" class="form-label">Co-supervisor(s)</label>
+        {{ form.cosupervisors }}
+        <div id="cosupervisorsHelp" class="form-text">Enter any additional UWA supervisors. Please include affiliations (eg. school or institute).</div>
+    </div>
+    <div class="mb-3">
+        <label for="external" class="form-label">External supervisors/mentors/sponsors</label>
+        {{ form.external }}
+        <div class="form-text">Please include affiliations (eg. company, NFP, research institute).</div>
+    </div>
+    <div class="mb-3">
+        <label for="title" class="form-label"><b>Title*</b></label>
+        {{ form.title }}
+    </div>
+    
+    <div class="mb-3">
+        <label for="description" class="form-label"><b>Description*</b></label>
+        {{ form.description }}
+        <div class="form-text">Full description for project page. No word limit. May include markdown (including images).</div>
+    </div>
+    <div class="mb-3">
+        <label for="short" class="form-label">Short description</label>
+        {{ form.short }}
+        <div class="form-text">Short summary of less than 60 words for the projects index. If omitted the full description will be truncated for the index. Supports markdown.</div>
+    </div>
+    <b>Suitable for:*</b>
+    <div class="input-group mb-3">
+        <div class="form-check form-check-inline">
+        <label for="honours" class="form-check-label">Honours</label>
+        {{ form.honours }}
+        </div>
+        <div class="form-check form-check-inline">
+        <label for="mds" class="form-check-label">Master of Data Science</label>
+        {{ form.mds }}
+        </div>
+        <div class="form-check form-check-inline">
+         <label for="se" class="form-check-label">Software Engineering</label>
+        {{ form.se }}
+        </div>
+        <label for="other" class="form-label">Other:&nbsp; </label>
+        {{ form.other }}   
+    </div>
+    <div class="form-text">SE and engineering suitability is currently for information only - projects must be submitted to the School of Engineering.</div>
+    <p>
+        <div class="mb-3">
+            <label for="numstudents" class="form-label">Number of students</label>
+            {{ form.numstudents }}
+            <div class="form-text">If the topic will support more than one student project. (Engineering topics often support 2-4 students.)</div>
+        </div>
+    <div class="mb-3">
+        <label for="skills" class="form-label">Requisite skills</label>
+        {{ form.skills }}
+        <div class="form-text">Skills that students would be expected to have or independently develop prior to, or early in, the project (eg. python programming).</div>
+    </div>
+    <div class="mb-3">
+        <label for="references" class="form-label">References</label>
+        {{ form.references }}
+        <div class="form-text">References prospective students can follow up to get a flavour for the project. Supports markdown.</div>
+    </div>
+    <div class="mb-3">
+        <label for="link" class="form-label">Link for additional information</label>
+        {{ form.link }}
+        <div class="form-text">Can relate to the topic, the supervisor or research group.</div>
+    </div>
+
+<!--
+
+   <div class="mb-3">
+        <label for="primary" class="form-label">Primary supervisor:</label>
+        <select class="form-select" id="primary" aria-describedby="primaryHelp">
+            <option selected>Please select</option>
+            {% for supervisor in supervisor_list %}
+            <option value="{{ supervisor.pk }}">{{ supervisor }}</option>
+            {% endfor %}
+        </select>
+        <div id="primaryHelp" class="form-text">Please contact the <a href="mailto:cara.macnish@uwa.edu.au">Projects Coordinator</a> to be added as a supervisor.</div>
+    </div>
+
     <div class="mb-3">
         <label for="title" class="form-label">Topic title:</label>
         <input type="text" class="form-control" id="title" aria-describedby="titleHelp">
-        <div id="emailHelp" class="form-text">type in your title.</div>
     </div>
     <div class="mb-3">
         <label for="description" class="form-label">Description:</label>
-        <input type="textarea" class="form-control" id="desctiption" aria-describedby="descriptionHelp">
+        <textarea class="form-control" rows="5" id="description" aria-describedby="descriptionHelp"></textarea>
         <div id="descriptionHelp" class="form-text">Please enter the topic full description. The description may include markdown.</div>
     </div>
 
+   {% if form.errors %}
+        {{ form.errors }}
+    {% endif %}
+ -->   
+
     <input type="submit" value="Submit" class="btn btn-secondary">
+</form>
 
 {% endif %}
 

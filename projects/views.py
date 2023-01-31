@@ -7,13 +7,18 @@ from .forms import ProjectForm
 
 def add_project(request):
     submitted = False
+ #   error = False
+ #   supervisor_list = Supervisor.objects.all()
     if request.method == "POST":
         form = ProjectForm(request.POST)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('?submitted=True')
+#        
+#        return HttpResponseRedirect('?error=True')
     else:
-        form = ProjectForm
+        form = ProjectForm()
+ #       supervisor_list = Supervisor.objects.all()
         if 'submitted' in request.GET:
             submitted = True
 

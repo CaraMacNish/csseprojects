@@ -34,7 +34,7 @@ class Project(models.Model):
     other = models.CharField("Other (please specify)", max_length=40, blank=True)
     numstudents = models.CharField("Number of Students", max_length=20, blank=True)
     #primary = models.CharField("Primary Supervisor", max_length=50)
-    primary = models.ForeignKey(Supervisor, on_delete=models.CASCADE, verbose_name="Primary Supervisor", null = True)
+    primary = models.ForeignKey(Supervisor, on_delete=models.CASCADE, related_name="primary", verbose_name="Primary Supervisor", null = True)
     cosupervisor = models.ForeignKey(Supervisor, on_delete=models.CASCADE, verbose_name="Co-Supervisor", null = True, blank=True)
     cosupervisors = models.TextField("Co-supervisors", blank=True)
     external = models.TextField("External Supervisors/Mentors/Sponsors", blank=True)

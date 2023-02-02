@@ -26,7 +26,7 @@ def add_project(request):
     return render(request, "projects/add_project.html", {'form': form, 'submitted': submitted})
 
 def all_supervisors(request):
-    supervisor_list = Supervisor.objects.all()
+    supervisor_list = Supervisor.objects.all().order_by('lastname')
     return render(request, "projects/supervisor_list.html", 
         {'supervisor_list': supervisor_list})
 
@@ -53,6 +53,8 @@ def search_projects(request):
         project_list = Project.objects.all().filter(
             Q(primary__lastname__contains = searched) |
             Q(primary__firstname__contains = searched) |
+            Q(cosupervisor__lastname__contains = searched) |
+            Q(cosupervisor__firstname__contains = searched) |
             Q(external__contains = searched) |
             Q(title__contains = searched) |
             Q(description__contains = searched)

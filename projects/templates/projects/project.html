@@ -37,9 +37,16 @@
                             {% endif %}
                         </small>
                     </dd>
-                    {% if project.cosupervisors %}
-                    <dt class="col-md-4 col-lg-3 col-xxl-2">Co-supervisors:</dt>
-                    <dd class="col-md-8 col-lg-9 col-xxl-10">{{ project.cosupervisors }}</dd>
+                    {% if project.cosupervisor %}
+                    <dt class="col-md-4 col-lg-3 col-xxl-2">Co-supervisor:</dt>
+                    <dd class="col-md-8 col-lg-9 col-xxl-10">{{ project.cosupervisor }}
+                        <small> {{ project.cosupervisor.department }}
+                            (<a href=mailto:{{ project.cosupervisor.email }}>Email</a>)
+                            {% if project.cosupervisor.web %}
+                                (<a href={{ project.cosupervisor.web }}>Website</a>)
+                            {% endif %}
+                        </small>
+                    </dd>
                     {% endif %}
                     {% if project.external %}
                     <dt class="col-md-4 col-lg-3 col-xxl-2">External:</dt>

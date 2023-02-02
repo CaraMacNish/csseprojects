@@ -77,8 +77,14 @@
                             (<a href={{ project.primary.web }}>Website</a>)
                         {% endif %}
                     </small>
-                    {% if project.cosupervisors %}
-                        <br>{{ project.cosupervisors }}
+                    {% if project.cosupervisor %}
+                        <br>{{ project.cosupervisor }}
+                        <small> {{ project.cosupervisor.department }}
+                            (<a href=mailto:{{ project.cosupervisor.email }}>Email</a>)
+                            {% if project.cosupervisor.web %}
+                                (<a href={{ project.primary.web }}>Website</a>)
+                            {% endif %}
+                        </small>
                     {% endif %}
                     {% if project.external %}
                         <br>{{ project.external }}
@@ -111,70 +117,5 @@
     </small>
          
 
-
-    <div class="container py-4">
-        <div class="row align-items-md-stretch g-3 py-2">
-        {% for project in project_list %}
-        <div class="col-lg-6 col-xl-4">  
-        <div class="card" style="width:100%">
-            <div class="card-header">
-                <h5>{{ project.title }}</h5>
-              </div>
-            <div class="card-body">
-                <h6 class="card-title"><h5><!--{{ project.pk }}. --> {{ project.title }} <small>(
-                    {% if project.honours %} Honours; {% endif %}
-                    {% if project.mds %} MDS; {% endif %}
-                    {% if project.engineering %} Engineering; {% endif %})</small></h5>
-                <div class="container" style="font-size:0.9rem">
-                    <div class="row gx-2 py-1">
-                        <div class="col-2 px-0" style="font-weight:bold">
-                            Primary supervisor:
-                        </div>
-                        <div class="col">
-                            {{ project.primary }}, <small> {{ project.primary.department }}
-                                (<a href=mailto:{{ project.primary.email }}>Email</a>)
-                                {% if project.primary.web %}
-                                    (<a href={{ project.primary.web }}>Website</a>)
-                                {% endif %}</small>
-                        </div>
-                        </div>
-                    {% if project.cosupervisors %}
-                    <div class="row gx-2 py-1">
-                        <div class="col-2 px-0" style="font-weight:bold">
-                            Co-supervisors:
-                        </div>
-                        <div class="col">
-                            {{ project.cosupervisors }}
-                        </div>
-                    </div>
-                    {% endif %}
-                    {% if project.external %}
-                    <div class="row gx-2 py-1">
-                        <div class="col-2 px-0 style="font-weight:bold"">
-                            External:
-                        </div>
-                        <div class="col">
-                            {{ project.external }}
-                        </div>
-                    </div>
-                    {% endif %}
-                    <div class="row gx-2 py-1">
-                        <div class="col-2 px-0" style="font-weight:bold">
-                            Description:<br/><br/>
-                            <a href="{{ project.pk}}/" class="btn btn-secondary">View project</a>          
-                         </div>
-                         <div class="col">
-                            {{ project.description | markdown | safe | truncatewords:60 }}
-                        </div>
-                    </div>
-
-                </div>
-    
-                
-            </div>
-        </div>
-    </div>
-        {% endfor %} 
-</div> 
     </main>
 {% endblock %}

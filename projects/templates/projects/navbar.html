@@ -1,9 +1,7 @@
 
 <nav class="p-3 navbar navbar-expand-lg navbar-dark pl-5" style="background-color: #309AA3;>
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">
-   
-        CSSE Projects</a>
+      <a class="navbar-brand" href="#">CSSE Projects</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -13,28 +11,17 @@
             <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'project-list' %}">Projects</a>
+            <a class="nav-link active" href="{% url 'project-list' %}">Projects</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'add-project' %}">Add Project</a>
-          </li>
-         <li class="nav-item">
-            <a class="nav-link" href="{% url 'supervisor-list' %}">Supervisors</a>
+            <a class="nav-link active" href="{% url 'supervisor-list' %}">Supervisors</a>
           </li>
 
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-          </li>
+            <span class="navbar-text">
+              |  
+            </span>
           <li class="nav-item">
-            <a class="nav-link disabled">Disabled</a>
+            <a class="nav-link" href="{% url 'project-index' %}">Staff Resources</a>
           </li>
         </ul>
         <form class="d-flex" role="search" method=POST action="{% url 'search-projects' %}">

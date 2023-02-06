@@ -6,7 +6,7 @@ class ProjectForm(ModelForm):
     class Meta:
         model = Project
 #        fields = ('title', 'description', 'short', 'honours', 'mds', 'se', 'engineering', 'other', 'numstudents', 'primary', 'cosupervisors', 'external', 'link', 'references')
-        fields = ('primary', 'title', 'description','honours', 'mds', 'se', 'other',
+        fields = ('primary', 'cosupervisor', 'title', 'description','honours', 'mds', 'se', 'other',
              'numstudents', 'cosupervisors', 'external', 'link', 'references', 'short', 'skills')
         labels = {
 #            'primary': 'Primary supervisor',
@@ -18,8 +18,8 @@ class ProjectForm(ModelForm):
         }
 
         widgets = {
-            'primary': forms.Select(attrs={'class': 'form-select', 'label': 'hello'}),
-            'cosupervisors': forms.TextInput(attrs={'class': 'form-control'}),
+            'primary': forms.Select(attrs={'class': 'form-select'}),
+            'cosupervisor': forms.Select(attrs={'class': 'form-select'}),
             'external': forms.TextInput(attrs={'class': 'form-control'}),
             'title': forms.TextInput(attrs={'class': 'form-control'}),
             'description': forms.Textarea(attrs={'class': 'form-control', 'rows':"6"}),

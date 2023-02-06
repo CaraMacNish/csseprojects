@@ -1,12 +1,10 @@
 {% extends 'projects/base.html' %}
-{% load markdown_extras %}
 {% load static %}
 
 {% block content %}
 
-
 <main>
-    {% include "projects/header.html" with title="Add a Project Topic" %}
+    {% include "projects/header.html" with title="Edit a Project Topic" %}
 
 {% if submitted %}
     Your project was submitted successfully!
@@ -23,14 +21,14 @@
         <div id="primaryHelp" class="form-text">Please contact the <a href="mailto:cara.macnish@uwa.edu.au">Projects Coordinator</a> to be added to the list of supervisors.</div>
     </div>
     <div class="mb-3">
-        <label for="cosupervisor" class="form-label">Co-supervisor</label>
-        {{ form.cosupervisor }}
-        <div id="cosupervisorsHelp" class="form-text">Enter UWA co-supervisor, if relevant.</div>
+        <label for="cosupervisors" class="form-label">Co-supervisor(s)</label>
+        {{ form.cosupervisors }}
+        <div id="cosupervisorsHelp" class="form-text">Enter any additional UWA supervisors. Please include affiliations (eg. school or institute).</div>
     </div>
     <div class="mb-3">
         <label for="external" class="form-label">External supervisors/mentors/sponsors</label>
         {{ form.external }}
-        <div class="form-text">List any additional members of the supervisory team. Please include affiliations (eg. company, NFP, research institute).</div>
+        <div class="form-text">Please include affiliations (eg. company, NFP, research institute).</div>
     </div>
     <div class="mb-3">
         <label for="title" class="form-label"><b>Title*</b></label>
@@ -86,34 +84,6 @@
         {{ form.link }}
         <div class="form-text">Can relate to the topic, the supervisor or research group.</div>
     </div>
-
-<!--
-
-   <div class="mb-3">
-        <label for="primary" class="form-label">Primary supervisor:</label>
-        <select class="form-select" id="primary" aria-describedby="primaryHelp">
-            <option selected>Please select</option>
-            {% for supervisor in supervisor_list %}
-            <option value="{{ supervisor.pk }}">{{ supervisor }}</option>
-            {% endfor %}
-        </select>
-        <div id="primaryHelp" class="form-text">Please contact the <a href="mailto:cara.macnish@uwa.edu.au">Projects Coordinator</a> to be added as a supervisor.</div>
-    </div>
-
-    <div class="mb-3">
-        <label for="title" class="form-label">Topic title:</label>
-        <input type="text" class="form-control" id="title" aria-describedby="titleHelp">
-    </div>
-    <div class="mb-3">
-        <label for="description" class="form-label">Description:</label>
-        <textarea class="form-control" rows="5" id="description" aria-describedby="descriptionHelp"></textarea>
-        <div id="descriptionHelp" class="form-text">Please enter the topic full description. The description may include markdown.</div>
-    </div>
-
-   {% if form.errors %}
-        {{ form.errors }}
-    {% endif %}
- -->   
 
     <input type="submit" value="Submit" class="btn btn-secondary">
 </form>

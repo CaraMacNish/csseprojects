@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.db.models import Q
 from .models import Supervisor, Project
@@ -22,8 +22,16 @@ def add_project(request):
  #       supervisor_list = Supervisor.objects.all()
         if 'submitted' in request.GET:
             submitted = True
-
     return render(request, "projects/add_project.html", {'form': form, 'submitted': submitted})
+
+def edit_project(request, id):
+    project = Project.objects.get(pk=id)
+    form = ProjectForm(request.POST or None, instance=project)
+    if form.is_valid():
+        form.save()
+        return redirect('project', project.pk)
+
+    return render(request, "projects/edit_project.html", {"project": project, 'form': form })
 
 def all_supervisors(request):
     supervisor_list = Supervisor.objects.all().order_by('lastname')
@@ -35,7 +43,7 @@ def project(request, id):
     return render(request, "projects/project.html", {"project": proj} )
 
 def all_projects(request):
-    project_list = Project.objects.all().order_by('-modified')
+    project_list = Project.objects.all().order_by('-current_date')
     eligible_list = []
     for project in project_list:
         eligible_list.append([project.honours, project.mds, project.engineering])    

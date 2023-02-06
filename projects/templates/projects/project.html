@@ -18,7 +18,6 @@
                         {% if project.honours %} Honours; {% endif %}
                         {% if project.mds %} MDS; {% endif %}
                         {% if project.se %} SE; {% endif %}
-                        {% if project.engineering %} Engineering; {% endif %}
                         {% if project.other %} {{ project.other }}; {% endif %}
                     </dd>
                     <dt class="col-md-4 col-lg-3 col-xxl-2">Primary supervisor:</dt>
@@ -43,7 +42,7 @@
                     </dd>
                     {% endif %}
                     {% if project.external %}
-                    <dt class="col-md-4 col-lg-3 col-xxl-2">External:</dt>
+                    <dt class="col-md-4 col-lg-3 col-xxl-2">Additional supervisory team:</dt>
                     <dd class="col-md-8 col-lg-9 col-xxl-10">{{ project.external }}</dd>
                     {% endif %}
                     {% if project.numstudents %}

@@ -61,7 +61,7 @@
         <hr class="my-4">
         
         <small>
-        <div class="row align-items-md-stretch g-4 py-2">
+        <div class="row align-items-md-stretch g-4 py-1">
         {% for project in project_list %}  
             <div class="col-xl-6">
                 <div class="h-100 shadow-sm p-4 bg-white border rounded-4">
@@ -74,7 +74,7 @@
                         {% if project.other %} {{ project.other }}; {% endif %}
                     </p>
                     <h6>Supervisors</h6>
-                    <p>
+                    
                     {{ project.primary }},
                     <small> {{ project.primary.department }}
                         (<a href=mailto:{{ project.primary.email }}>Email</a>)
@@ -83,7 +83,7 @@
                         {% endif %}
                     </small>
                     {% if project.cosupervisor %}
-                        <br>{{ project.cosupervisor }}
+                        , {{ project.cosupervisor }},
                         <small> {{ project.cosupervisor.department }}
                             (<a href=mailto:{{ project.cosupervisor.email }}>Email</a>)
                             {% if project.cosupervisor.web %}
@@ -92,13 +92,12 @@
                         </small>
                     {% endif %}
                     {% if project.external %}
-                        <br>{{ project.external }}
+                        , {{ project.external }}
                     {% endif %}
                     </p>
                     <h6>Short description</h6>
-                    <p>
                         {{ project.description | markdown | safe | truncatewords:80 }}
-                    </p>
+                    <p>
                     <a href="{{ project.pk}}/" class="btn btn-secondary">View project</a>
 <!--                <button class="btn btn-outline-light" type="button">Example button</button>-->
                 </div>

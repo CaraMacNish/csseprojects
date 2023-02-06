@@ -10,6 +10,8 @@ class Supervisor(models.Model):
     email = models.EmailField("Email")
     web = models.URLField("Web link", blank=True)
     interests = models.TextField("Research interests", blank=True)
+    class Meta:
+        ordering = ['lastname', 'firstname']
 
     def __str__(self):
         return self.firstname +  " " + self.lastname

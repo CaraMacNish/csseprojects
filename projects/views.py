@@ -51,7 +51,7 @@ def all_projects(request):
         {'project_list': project_list, 'eligible_list': eligible_list})
 
 def project_index(request):
-    project_list = Project.objects.all().order_by('primary')
+    project_list = Project.objects.all().order_by('primary__lastname')
     return render(request, "projects/project_index.html", 
         {'project_list': project_list})
         
@@ -66,11 +66,11 @@ def search_projects(request):
             Q(external__contains = searched) |
             Q(title__contains = searched) |
             Q(description__contains = searched)
-        )
+        ).order_by('-current_date')
         return render(request, "projects/search_projects.html", 
             {'searched': searched, 'project_list': project_list})
     else:
-        project_list = Project.objects.all().order_by('modified')
+        project_list = Project.objects.all().order_by('-current_date')
         return render(request, "projects/search_projects.html", 
             {'project_list': project_list})
 

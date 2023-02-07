@@ -27,18 +27,18 @@ class Project(models.Model):
     title = models.CharField("Topic Title", max_length=200)
     description = models.TextField("Description")
     short = models.TextField("Short Description", blank=True)
-    skills = models.CharField("Skills", max_length=60, blank=True)
+    skills = models.CharField("Skills", max_length=200, blank=True)
 #    suitability = models.CharField(max_length=10, choices=SUITABILITY_CHOICES)
     honours = models.BooleanField("Suitable for Honours", default=True)
     mds = models.BooleanField("Suitable for MDS", default=True)
     se = models.BooleanField("Suitable for Software Engineering", default=True)
-    engineering = models.BooleanField("Suitable for General Engineering", default=False)
-    other = models.CharField("Other (please specify)", max_length=40, blank=True)
+    engineering = models.BooleanField("Suitable for General Engineering", default=False) # not used
+    other = models.CharField("Other (please specify)", max_length=100, blank=True)
     numstudents = models.CharField("Number of Students", max_length=20, blank=True)
     #primary = models.CharField("Primary Supervisor", max_length=50)
     primary = models.ForeignKey(Supervisor, on_delete=models.CASCADE, related_name="primary", verbose_name="Primary Supervisor", null = True)
     cosupervisor = models.ForeignKey(Supervisor, on_delete=models.CASCADE, verbose_name="Co-Supervisor", null = True, blank=True)
-    cosupervisors = models.TextField("Co-supervisors", blank=True)
+    # cosupervisors = models.TextField("Co-supervisors", blank=True) # deprecated
     external = models.TextField("External Supervisors/Mentors/Sponsors", blank=True)
     link = models.URLField("Research Link", blank = True)
     references = models.TextField("Sample References", blank=True)
@@ -46,7 +46,6 @@ class Project(models.Model):
     modified = models.DateField("Last Modified", auto_now = True)
     current_date = models.DateField("Current Date", default = date.today)
     visible = models.BooleanField(default=True)
-
 
     def __str__(self):
         return self.title

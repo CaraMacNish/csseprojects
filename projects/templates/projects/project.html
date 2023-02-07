@@ -54,7 +54,7 @@
 
             <h5>Description</h5>
             <p class="col-md-8">{{ project.description | markdown | safe }}</p>
-            {% if project.references %}
+            {% if project.skills %}
             <h5>Assumed Skills</h5>
             <p class="col-md-8">{{ project.skills }}</p>
             {% endif %}
@@ -68,7 +68,7 @@
                     <dd class="col-md-7 col-lg-9 col-xxl-19"><a href="{{ project.link }}">{{ project.link }}</a></dd>
                 </dl>
             {% endif %}
-            <p><a href="mailto:{{ project.primary.email }}?subject={{ project.title}}" class="btn btn-secondary">Enquire</a></p>
+            <p><a href="mailto:{{ project.primary.email }}?subject=Enquiry: {{ project.title}}" class="btn btn-secondary">Enquire</a></p>
         </div>
     </div>
   

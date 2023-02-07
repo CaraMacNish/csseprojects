@@ -47,20 +47,20 @@
     </div>
     <b>Suitable for:*</b>
     <div class="input-group mb-3">
-        <div class="form-check form-check-inline">
+        <div class="form-check form-check-inline align-middle">
         <label for="honours" class="form-check-label">Honours</label>
-        {{ form.honours }}
+        <span class="mx-1">{{ form.honours }}</span>
         </div>
         <div class="form-check form-check-inline">
         <label for="mds" class="form-check-label">Master of Data Science</label>
-        {{ form.mds }}
+        <span class="mx-1">{{ form.mds }}</span>
         </div>
         <div class="form-check form-check-inline">
          <label for="se" class="form-check-label">Software Engineering</label>
-        {{ form.se }}
+         <span class="mx-1">{{ form.se }}</span>
         </div>
         <label for="other" class="form-label">Other:&nbsp; </label>
-        {{ form.other }}   
+        <span class="mx-1">{{ form.other }}</span>
     </div>
     <div class="form-text">SE and engineering suitability is currently for information only - projects must be submitted to the School of Engineering.</div>
     <p>
@@ -84,7 +84,14 @@
         {{ form.link }}
         <div class="form-text">Can relate to the topic, the supervisor or research group.</div>
     </div>
+    {% if not project.visible %}
 
+    <div class="mb-3">
+        <label for="visible" class="form-label mr-3">Reactivate</label>
+        <span class="mx-2">{{ form.visible }}</span>
+        <div class="form-text">This topic is currently not available.</div>
+    </div>
+    {% endif %}
     <input type="submit" value="Submit" class="btn btn-secondary">
 </form>
 

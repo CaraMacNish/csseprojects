@@ -5,9 +5,8 @@ from .models import Project, Supervisor
 class ProjectForm(ModelForm):
     class Meta:
         model = Project
-#        fields = ('title', 'description', 'short', 'honours', 'mds', 'se', 'engineering', 'other', 'numstudents', 'primary', 'cosupervisors', 'external', 'link', 'references')
         fields = ('primary', 'cosupervisor', 'title', 'description','honours', 'mds', 'se', 'other',
-             'numstudents', 'cosupervisors', 'external', 'link', 'references', 'short', 'skills')
+             'numstudents', 'external', 'link', 'references', 'short', 'skills','visible')
         labels = {
 #            'primary': 'Primary supervisor',
 #            'title': 'Topic title',
@@ -32,4 +31,5 @@ class ProjectForm(ModelForm):
             'skills': forms.TextInput(attrs={'class': 'form-control'}),
             'references': forms.Textarea(attrs={'class': 'form-control', 'rows':"3"}),
             'link': forms.URLInput(attrs={'class': 'form-control'}),
+            'visible': forms.CheckboxInput(attrs={'class': 'check_test'}),
         }

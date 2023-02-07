@@ -43,7 +43,7 @@ def project(request, id):
     return render(request, "projects/project.html", {"project": proj} )
 
 def all_projects(request):
-    project_list = Project.objects.all().order_by('-current_date')
+    project_list = Project.objects.all().exclude(visible=False).order_by('-current_date')
     eligible_list = []
     for project in project_list:
         eligible_list.append([project.honours, project.mds, project.engineering])    
@@ -58,7 +58,7 @@ def project_index(request):
 def search_projects(request):
     if request.method == "POST":
         searched = request.POST['searched']
-        project_list = Project.objects.all().filter(
+        project_list = Project.objects.all().exclude(visible=False).filter(
             Q(primary__lastname__contains = searched) |
             Q(primary__firstname__contains = searched) |
             Q(cosupervisor__lastname__contains = searched) |

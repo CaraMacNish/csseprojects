@@ -6,7 +6,7 @@
 <main>
     {% include "projects/header.html" with title="Search Results" %}
     {% if searched %}
-        Search results for {{ searched }}.
+        Search results for: <b>{{ searched }}</b>
     {% else %}
         No search term entered.
     {% endif %}
@@ -18,7 +18,7 @@
               <th scope="col">ID</th>
               <th scope="col">Primary Supervisor</th>
               <th scope="col">Title</th>
-              <th scope="col">Last Modified</th>
+              <th scope="col">Suitability</th>
               <th scope="col"></th>
             </tr>
           </thead>
@@ -28,7 +28,11 @@
               <td>{{ project.pk}}</td>
               <td>{{ project.primary }}</td>
               <td>{{ project.title }}</td>
-              <td>{{ project.current_date }}</td>
+              <td><small>{% if project.honours %} Honours; {% endif %}
+                {% if project.mds %} MDS; {% endif %}
+                {% if project.se %} SE; {% endif %}
+                {% if project.other %} Other; {% endif %}
+              </small></td>
               <td><a href="../index/{{ project.pk}}/" class="btn btn-secondary btn-sm">View project</a></td>
             </tr>
             {% endfor%}

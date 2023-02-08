@@ -7,8 +7,8 @@
 <main>
     {% include "projects/header.html" with title="Project Topic" %}
         
-    <div class="p-5 mb-4 bg-light border rounded-3">
-        <div class="container-fluid py-4">
+    <div class="p-5 mb-2 bg-light border rounded-3">
+        <div class="container-fluid py-3">
             <h4 class="fw-bold">{{ project.title }}</h4>
                         
             <div class="container-fluid py-1 px-0">
@@ -68,7 +68,11 @@
                     <dd class="col-md-7 col-lg-9 col-xxl-19"><a href="{{ project.link }}">{{ project.link }}</a></dd>
                 </dl>
             {% endif %}
-            <p><a href="mailto:{{ project.primary.email }}?subject=Enquiry: {{ project.title}}" class="btn btn-secondary">Enquire</a></p>
+            <p>
+            <div class="d-flex justify-content-between pt-3">
+                <a href="mailto:{{ project.primary.email }}?subject=Enquiry: {{ project.title}}" class="btn btn-secondary">Enquire</a>
+                <div class="float-right text-muted small">Last modified: {{ project.current_date|date:"M Y" }}</div>
+            </div>
         </div>
     </div>
   

@@ -23,7 +23,6 @@
         </div>
     </header>
    
-    <p>
     <table class="table table-striped table-hover">
         <thead>
             <tr>
@@ -31,6 +30,7 @@
               <th scope="col">Primary Supervisor</th>
               <th scope="col">Title</th>
               <th scope="col">Last Modified</th>
+              <th scope="col">Active</th>
               <th scope="col"></th>
             </tr>
           </thead>
@@ -41,6 +41,11 @@
               <td>{{ project.primary }}</td>
               <td>{{ project.title }}</td>
               <td>{{ project.current_date }}</td>
+              <td>
+                {% if project.visible %}
+                 &#10003;
+                {% endif %}
+              </td>
               <td>
                 <a href="{% url 'edit-project' project.pk %}" class="btn btn-outline-secondary btn-sm">Edit</a>
               </td>

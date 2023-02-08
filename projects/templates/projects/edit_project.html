@@ -85,13 +85,18 @@
         <div class="form-text">Can relate to the topic, the supervisor or research group.</div>
     </div>
     {% if not project.visible %}
-
     <div class="mb-3">
         <label for="visible" class="form-label mr-3">Reactivate</label>
         <span class="mx-2">{{ form.visible }}</span>
         <div class="form-text">This topic is currently not available.</div>
     </div>
+    {% else %} 
+    <div class="mb-3">
+        <label for="visible" class="form-label mr-3">Activate</label>
+        <span class="mx-2">{{ form.visible }}</span>
+        </div>
     {% endif %}
+
     <input type="submit" value="Submit" class="btn btn-secondary">
 </form>
 

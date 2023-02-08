@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.db.models import Q
+from datetime import date
 from .models import Supervisor, Project
 from .forms import ProjectForm
 
@@ -28,6 +29,7 @@ def edit_project(request, id):
     project = Project.objects.get(pk=id)
     form = ProjectForm(request.POST or None, instance=project)
     if form.is_valid():
+        form.instance.current_date = date.today().isoformat()
         form.save()
         return redirect('project', project.pk)
 
@@ -58,6 +60,7 @@ def project_index(request):
 def search_projects(request):
     if request.method == "POST":
         searched = request.POST['searched']
+
         project_list = Project.objects.all().exclude(visible=False).filter(
             Q(primary__lastname__contains = searched) |
             Q(primary__firstname__contains = searched) |

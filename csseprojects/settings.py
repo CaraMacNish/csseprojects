@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import environ
-import os
+#import os
 
 env = environ.Env(
     # set casting, default value
@@ -27,6 +27,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Take environment variables from .env file
 #environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 environ.Env.read_env(BASE_DIR/".env")
+
+ALLOWED_HOSTS = [env('ALLOWED_HOST1')]
 
 # False if not in os.environ because of casting above
 DEBUG = env('DEBUG')
@@ -77,7 +79,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 #DEBUG = True
 
-ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = []
 
 
 # Application definition

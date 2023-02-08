@@ -29,7 +29,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 environ.Env.read_env(BASE_DIR/".env")
 
 ALLOWED_HOSTS = [env('ALLOWED_HOST1')]
-print("allowed hosts", ALLOWED_HOSTS)
 
 # False if not in os.environ because of casting above
 DEBUG = env('DEBUG')

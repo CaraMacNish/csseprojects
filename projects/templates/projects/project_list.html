@@ -95,8 +95,13 @@
                         , {{ project.external }}
                     {% endif %}
                     </p>
+
                     <h6>Short description</h6>
+                    {% if project.short %}
+                        {{ project.short | markdown | safe }}
+                    {% else %}
                         {{ project.description | markdown | safe | truncatewords:80 }}
+                    {% endif %}
                     <p>
                     <a href="{{ project.pk}}/" class="btn btn-secondary">View project</a>
 <!--                <button class="btn btn-outline-light" type="button">Example button</button>-->

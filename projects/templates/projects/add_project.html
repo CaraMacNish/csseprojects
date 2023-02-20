@@ -36,7 +36,7 @@
         <label for="title" class="form-label"><b>Title*</b></label>
         {{ form.title }}
     </div>
-    
+
     <div class="mb-3">
         <label for="description" class="form-label"><b>Description*</b></label>
         {{ form.description }}
@@ -63,7 +63,7 @@
         {{ form.se }}
         </div>
         <label for="other" class="form-label">Other:&nbsp; </label>
-        {{ form.other }}   
+        {{ form.other }}
     </div>
     <div class="form-text">SE and engineering suitability is currently for information only - projects must be submitted to the School of Engineering.</div>
     <p>
@@ -87,7 +87,10 @@
         {{ form.link }}
         <div class="form-text">Can relate to the topic, the supervisor or research group.</div>
     </div>
-
+    <div class="mb-3">
+        <label for="visible" class="form-label mr-3">Activate</label>
+        <span class="mx-2">{{ form.visible }}</span>
+    </div>
 <!--
 
    <div class="mb-3">
@@ -114,7 +117,7 @@
    {% if form.errors %}
         {{ form.errors }}
     {% endif %}
- -->   
+ -->
 
     <input type="submit" value="Submit" class="btn btn-secondary">
 </form>

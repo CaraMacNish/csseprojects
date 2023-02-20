@@ -1,5 +1,5 @@
 
-<nav class="p-3 navbar navbar-expand-lg navbar-dark pl-5" style="background-color: #309AA3;>
+<nav class="p-4 navbar navbar-expand-lg navbar-dark pl-5" style="background-color: #309AA3;>
     <div class="container-fluid">
       <span class="navbar-brand" >CSSE Projects</span>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,7 +18,7 @@
           </li>
 
             <span class="navbar-text">
-              |  
+              |
             </span>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'project-index' %}">Staff Resources</a>
@@ -26,7 +26,7 @@
         </ul>
         <form class="d-flex" role="search" method=POST action="{% url 'search-projects' %}">
           {% csrf_token %}
-          <input class="form-control me-2" type="search" placeholder="Search projects" 
+          <input class="form-control me-2" type="search" placeholder="Search projects"
             aria-label="Search" name="searched">
           <button class="btn btn-secondary" type="submit">Search</button>
         </form>

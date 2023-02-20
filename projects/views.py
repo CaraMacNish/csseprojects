@@ -1,9 +1,14 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.db.models import Q
+from django.core.mail import send_mail
 from datetime import date
 from .models import Supervisor, Project
 from .forms import ProjectForm
+import logging
+
+# Create a logger for this file
+logger = logging.getLogger(__file__)
 
 # Create your views here.
 
@@ -14,9 +19,13 @@ def add_project(request):
     if request.method == "POST":
         form = ProjectForm(request.POST)
         if form.is_valid():
+            form.instance.visible = True
             form.save()
+            logger.info(str(form.instance.primary)+" "+str(form.instance.current_date))
+            logger.info("Added: "+form.instance.title)
+
             return HttpResponseRedirect('?submitted=True')
-#        
+#
 #        return HttpResponseRedirect('?error=True')
     else:
         form = ProjectForm()
@@ -31,13 +40,16 @@ def edit_project(request, id):
     if form.is_valid():
         form.instance.current_date = date.today().isoformat()
         form.save()
+        logger.info(str(form.instance.primary)+" "+str(form.instance.current_date))
+        logger.info("Edited: "+form.instance.title)
+#        send_mail('Project '+str(id)+'edited','Project '+str(id)+'edited', from_email=None, recipient_list=['cara.macnish@uwa.edu.au'],fail_silently=False)
         return redirect('project', project.pk)
 
     return render(request, "projects/edit_project.html", {"project": project, 'form': form })
 
 def all_supervisors(request):
     supervisor_list = Supervisor.objects.all().order_by('lastname')
-    return render(request, "projects/supervisor_list.html", 
+    return render(request, "projects/supervisor_list.html",
         {'supervisor_list': supervisor_list})
 
 def project(request, id):
@@ -48,15 +60,15 @@ def all_projects(request):
     project_list = Project.objects.all().exclude(visible=False).order_by('-current_date')
     eligible_list = []
     for project in project_list:
-        eligible_list.append([project.honours, project.mds, project.engineering])    
-    return render(request, "projects/project_list.html", 
+        eligible_list.append([project.honours, project.mds, project.engineering])
+    return render(request, "projects/project_list.html",
         {'project_list': project_list, 'eligible_list': eligible_list})
 
 def project_index(request):
     project_list = Project.objects.all().order_by('primary__lastname')
-    return render(request, "projects/project_index.html", 
+    return render(request, "projects/project_index.html",
         {'project_list': project_list})
-        
+
 def search_projects(request):
     if request.method == "POST":
         searched = request.POST['searched']
@@ -70,11 +82,11 @@ def search_projects(request):
             Q(title__contains = searched) |
             Q(description__contains = searched)
         ).order_by('-current_date')
-        return render(request, "projects/search_projects.html", 
+        return render(request, "projects/search_projects.html",
             {'searched': searched, 'project_list': project_list})
     else:
         project_list = Project.objects.all().order_by('-current_date')
-        return render(request, "projects/search_projects.html", 
+        return render(request, "projects/search_projects.html",
             {'project_list': project_list})
 
 def home(request):
